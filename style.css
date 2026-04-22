@@ -23,3 +23,16 @@ h1 {
   color: transparent;
   text-shadow: 0 0 4px white;
 }
+
+#buttons {
+  position: absolute;
+  display: flex;
+  top: 95vh;
+  width: 20vw;
+  justify-content: space-around;
+}
+
+#buttons > button {
+  width: 8vw;
+  height: 4vh;
+}

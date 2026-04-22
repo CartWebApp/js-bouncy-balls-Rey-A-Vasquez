@@ -8,13 +8,17 @@ const height = canvas.height = window.innerHeight;
 
 
 const counter = document.getElementById("ball-counter");
-// function to generate random number
+const addBall = document.getElementById("addBall");
+const removeBall = document.getElementById("removeBall");
 
+//creating balls array
+let balls = [];
+
+// function to generate random number
 function random(min, max) {
   const num = Math.floor(Math.random() * (max - min + 1)) + min;
   return num;
 }
-
 
 //Ball class
 function Ball(x, y, velocityX, velocityY, color, size){
@@ -98,8 +102,21 @@ Ball.prototype.update = function(){
   this.y += this.velocityY;
 }
 
-//creating balls
-let balls = [];
+
+
+//Event Listeners for adding balls
+addBall.addEventListener("click", ()=>{
+  let size = random(10,20);
+  let ball = new Ball(random(0 + size, width - size),random(0 + size, height - size), random(-7,7), random(-7,7), `rgb(${random(0,255)}, ${random(0,255)}, ${random(0,255)})`, size);
+
+  balls.push(ball);
+  counter.innerHTML = `${balls.length}`;
+})
+
+removeBall.addEventListener("click", ()=>{
+  balls.pop();
+  counter.innerHTML = `${balls.length}`;
+})
 
 //collision detection
 Ball.prototype.collisionDetect = function(){
